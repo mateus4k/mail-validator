@@ -20,7 +20,7 @@ export class MailsController {
   @Get('validate')
   async validate(@Query('mail') mail: string) {
     const key = `mail-${mail}`;
-    const cachedValue = this.cache.get(key);
+    const cachedValue = await this.cache.get(key);
 
     if (cachedValue) {
       return { validation: cachedValue };
