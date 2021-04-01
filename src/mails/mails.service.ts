@@ -14,7 +14,7 @@ export class MailsService {
     return createdMail.save();
   }
 
-  async findAll(): Promise<any> {
+  async findAll(): Promise<MailDocument[]> {
     return this.mailModel.find().exec();
   }
 
