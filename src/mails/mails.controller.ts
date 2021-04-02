@@ -12,8 +12,8 @@ export class MailsController {
     private readonly mailsService: MailsService,
   ) {}
 
-  @Get('get')
-  async find() {
+  @Get('all')
+  async findAll() {
     return this.mailsService.findAll();
   }
 
