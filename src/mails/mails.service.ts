@@ -10,8 +10,7 @@ export class MailsService {
   constructor(@InjectModel(Mail.name) private mailModel: Model<MailDocument>) {}
 
   async create(createMailDto: CreateMailDto): Promise<Mail> {
-    const createdMail = new this.mailModel(createMailDto);
-    return createdMail.save();
+    return this.mailModel.create(createMailDto);
   }
 
   async findAll(): Promise<MailDocument[]> {

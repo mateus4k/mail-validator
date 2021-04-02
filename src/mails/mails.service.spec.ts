@@ -9,6 +9,7 @@ describe('MailsService', () => {
 
   const mockModel = {
     find: jest.fn().mockReturnThis(),
+    create: jest.fn(),
     exec: jest.fn(),
     exists: jest.fn(),
   };
@@ -35,6 +36,14 @@ describe('MailsService', () => {
     expect(service).toBeDefined();
   });
 
+  describe('create', () => {
+    it('should create a new mail', async () => {
+      mockModel.create.mockReturnValue(mockedMail);
+      await service.create(mockedMail);
+      expect(mockModel.create).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('findAll', () => {
     it('should list all mails', async () => {
       mockModel.exec.mockReturnValue([mockedMail, mockedMail]);
@@ -42,6 +51,16 @@ describe('MailsService', () => {
       expect(sut).toHaveLength(2);
       expect(mockModel.find).toHaveBeenCalledTimes(1);
       expect(mockModel.exec).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('exists', () => {
+    it('should create a new mail', async () => {
+      mockModel.exists.mockReturnValue(true);
+      const sut = await service.exists(mockedMail.mail);
+      expect(sut).toBeTruthy();
+      expect(mockModel.exists).toHaveBeenCalledTimes(1);
+      expect(mockModel.exists).toHaveBeenCalledWith({ mail: mockedMail.mail });
     });
   });
 });
