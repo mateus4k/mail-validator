@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "dist/main.js"
     }
-  ]
+  ],
+  "github": {
+    "silent": true
+  }
 }
